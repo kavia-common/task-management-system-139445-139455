@@ -3,12 +3,14 @@ const express = require('express');
 const routes = require('./routes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('../swagger');
+const { getConfig } = require('./config/env');
 
 // Initialize express app
 const app = express();
 
+const cfg = getConfig();
 app.use(cors({
-  origin: '*',
+  origin: cfg.cors.origin,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
